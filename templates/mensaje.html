@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <div class="registrar" style="position: absolute; left: 800px;">
+       
+        {% if tipo == 'login' %}
+            <h2>{{ mensaje }}</h2>
+            <a href="/" class="btn btn-primary">Reingresar</a>
+
+        {% else %}
+            <h3>{{ mensaje }}</h3>
+            <a href="/home" class="btn btn-primary">Volver</a>
+        {% endif %}
+    </div>
+    <footer>        
+        <div class="logo">
+                <img src="{{url_for('static',filename='images/logo.png')}}" alt="Logo Colegio San Miguel" style="position: absolute; top: 30px;">
+            </div>
+        <div class="footer-content">
+    
+            <div class="contact-info">
+                <p>Colegio San Miguel</p>
+                <p>Dirección: Barilari 3346, Banfield (1828)</p>
+                <p>Teléfono: (011) 4260-1120</p>
+            </div>
+        </div>
+    </footer>
+{% endblock %}

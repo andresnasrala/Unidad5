@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="informe" style="position: absolute; left: 800px;">
+    
+        
+        <h1>Informe</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Estudiante</th>
+                    <th>Aula Presente</th>
+                    <th>Aula Ausente Just.</th>
+                    <th>Aula Ausente Injust.</th>
+                    <th>Ed. Física Presente</th>
+                    <th>Ed. Física Ausente Just.</th>
+                    <th>Ed. Física Ausente Injust.</th>
+                    <th>Total Inasistencias</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for item in informe %}
+                    <tr>
+                        <td>{{ item.estudiante.nombre }} {{ item.estudiante.apellido }}</td>
+                        <td>{{ item.aula_presente }}</td>
+                        <td>{{ item.aula_ausente_justificada }}</td>
+                        <td>{{ item.aula_ausente_injustificada }}</td>
+                        <td>{{ item.edu_fisica_presente }}</td>
+                        <td>{{ item.edu_ausente_justificada }}</td>
+                        <td>{{ item.edu_ausente_injustificada }}</td>
+                        <td>{{ item.total }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+    <a href="{{ url_for('home') }}" class="btn btn-primary", >Volver</a>
+    
+    </div>
+    <footer>        
+        <div class="logo">
+                <img src="{{url_for('static',filename='images/logo.png')}}" alt="Logo Colegio San Miguel" style="position: absolute; top: 30px;">
+            </div>
+        <div class="footer-content">
+    
+            <div class="contact-info">
+                <p>Colegio San Miguel</p>
+                <p>Dirección: Barilari 3346, Banfield (1828)</p>
+                <p>Teléfono: (011) 4260-1120</p>
+            </div>
+        </div>
+    </footer>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="registrar" style="position: absolute; left: 800px;">
+        
+        <h2>Registrar asistencia</h2>
+
+        <form method="POST">
+            <label for="clase">Clase:</label>
+
+            <select name="clase" required>
+                <option value="1">Aula</option>
+                <option value="2">Educación Física</option>
+            </select>
+
+            <label for="fecha">Fecha:</label>
+            <input type="date" name="fecha" required>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre </th>
+                        <th>Apellido </th>
+                        <th>Asistencia </th>
+                        <th>Justificación</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for estudiante in estudiantes %}
+                        <tr>
+                            <td>{{ estudiante.nombre }}</td>
+                            <td>{{ estudiante.apellido }}</td>
+                            <td>
+                                <select name="asistencia_{{ estudiante.id }}">
+                                    <option value="s">Sí</option>
+                                    <option value="n">No</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="text" name="justificacion_{{ estudiante.id }}" placeholder="Justificación">
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <input type="submit" value="Guardar Asistencia">
+        </form>
+        
+        <a href="{{ url_for('home') }}" class="btn btn-primary", >Volver</a>
+    </div>
+
+    <footer>        
+        <div class="logo">
+                <img src="{{url_for('static',filename='images/logo.png')}}" alt="Logo Colegio San Miguel" style="position: absolute; top: 30px;">
+            </div>
+        <div class="footer-content">
+    
+            <div class="contact-info">
+                <p>Colegio San Miguel</p>
+                <p>Dirección: Barilari 3346, Banfield (1828)</p>
+                <p>Teléfono: (011) 4260-1120</p>
+            </div>
+        </div>
+    </footer>
+{% endblock %}
+

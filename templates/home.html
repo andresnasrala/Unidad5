@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="login-box">
+        
+
+        <h2>Sistema de Gestión</h2>
+
+        <div class="selecurso">
+            <h3>Cursos asignados:</h3>
+            <select id="cursoSelect">
+                <option value="" selected disabled hidden>Seleccione un curso</option>
+                {% for curso in cursos %}
+                <option value="{{ curso.id }}"> {{ curso.anio }}°, {{ curso.division }}</option>
+                {% endfor %}
+            </select>
+
+            <div id="funcionalidades" style="position: absolute;">
+            <ul class="funcionalidades-list">
+                <p style=" font-size: 0%;"> &nbsp; &nbsp; </p>
+                <li><a id="asistencia" href="#">Registrar Asistencia</a></li>
+                <p style=" font-size: 0%;"> &nbsp; &nbsp; </p>
+                <li><a id="informe" href="#">Informe Detallado</a></li>
+            </ul>
+        </div>
+        
+        <script>
+            document.getElementById("cursoSelect").addEventListener("change", function() {
+                var cursoSelect = document.getElementById("cursoSelect");
+                var cursoId = cursoSelect.value;
+                document.getElementById("asistencia").href = "{{ url_for('asistencia', curso_id=0) | replace('0', '') }}"+cursoId;
+                document.getElementById("informe").href = "{{ url_for('informe', curso_id=0) | replace('0', '') }}"+cursoId;
+                }
+            );
+        </script>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <a href="{{ url_for('logout') }}" class="btn btn-primary text-white">Cerrar sesión</a>
+    </div>
+    </div>
+
+    <footer>        
+        <div class="logo">
+                <img src="{{url_for('static',filename='images/logo.png')}}" alt="Logo Colegio San Miguel" style="position: absolute; top: 30px;">
+            </div>
+        <div class="footer-content">
+    
+            <div class="contact-info">
+                <p>Colegio San Miguel</p>
+                <p>Dirección: Barilari 3346, Banfield (1828)</p>
+                <p>Teléfono: (011) 4260-1120</p>
+            </div>
+        </div>
+    </footer>
+{% endblock %}
+
